@@ -70,25 +70,55 @@ export const loginUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: user, token: token });
 };
 export const getAllUsers = async (req, res) => {
-  let { sort, name, accountNumber, email, ref, date, balance } = req.query;
+  let {
+    email,
+    lastName,
+    firstName,
+    phoneNumber,
+    officeNumber,
+    companyName,
+    address,
+    user,
+  } = req.query;
 
   let result = User.find({});
 
-  if (name) {
-    result = User.find({ name: { $regex: name, $options: 'i' } });
+  if (lastName) {
+    result = User.find({ lastName: { $regex: lastName, $options: 'i' } });
   }
 
-  if (ref) {
-    result = User.find({ ref: { $eq: ref } });
+  if (firstName) {
+    result = User.find({ firstName: { $regex: firstName, $options: 'i' } });
   }
-  if (accountNumber) {
-    result = User.find({ accountNumber: { $eq: accountNumber } });
+  if (phoneNumber) {
+    result = User.find({ phoneNumber: { $regex: phoneNumber, $options: 'i' } });
   }
-  if (balance) {
-    result = User.find({ balance: { $eq: balance } });
+
+  if (officeNumber) {
+    result = User.find({
+      officeNumber: { $regex: officeNumber, $options: 'i' },
+    });
   }
+
+  if (companyName) {
+    result = User.find({
+      companyName: { $regex: companyName, $options: 'i' },
+    });
+  }
+  if (address) {
+    result = User.find({
+      address: { $regex: address, $options: 'i' },
+    });
+  }
+
+  if (user) {
+    result = User.find({
+      user: { $regex: user, $options: 'i' },
+    });
+  }
+
   if (date) {
-    result = Order.find(queryObject, {
+    result = Order.find({
       date: { $regex: date, $options: 'i' },
     });
   }
@@ -106,14 +136,14 @@ export const getAllUsers = async (req, res) => {
     result = result.sort('createdAt');
   }
   if (sort === 'a-z') {
-    result = result.sort('name');
+    result = result.sort('firstName');
   }
   if (sort === 'z-a') {
-    result = result.sort('-name');
+    result = result.sort('-firstName');
   }
 
   const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 1000;
+  const limit = Number(req.query.limit) || 10;
   const skip = (page - 1) * limit;
 
   result = result.skip(skip).limit(limit);
@@ -237,17 +267,3 @@ export const passwordReset = async (req, res) => {
     .status(StatusCodes.OK)
     .json({ user: user, token: token, msg: 'Password has been reset' });
 };
-
-// module.exports = {
-//   passwordReset,
-//   showCurrentUser,
-//   registerUser,
-//   loginUser,
-//   getAllUsers,
-//   getSingleUser,
-//   editSingleUser,
-//   deleteSingleUser,
-//   deleteAllUsers,
-//   updateUserPassword,
-//   emailPassword,
-// };
