@@ -31,7 +31,7 @@ export const registerUser = async (req, res) => {
     return Math.floor(Math.random() * 100);
   };
 
-  let randomTwoDigit2 = getRandomEightDigit2();
+  let randomTwoDigit2 = getRandomTwoDigit2();
 
   const user = await User.create({
     id: `UZ-${randomTwoDigit1}`,
