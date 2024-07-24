@@ -11,7 +11,8 @@ require('dotenv').config();
 import path from 'path';
 
 import authRouter from './routes/authRouter.js';
-
+import contactRouter from './routes/contactRouter.js';
+import bookingRouter from './routes/bookingRouter.js';
 import notificationRouter from './routes/notificationRouter.js';
 
 // import uploadRouter from './routes/uploadRouter.js';
@@ -55,9 +56,9 @@ app.use(express.static('./public'));
 app.use(express.json());
 
 app.use('/api/auth', authRouter);
-
+app.use('/api/booking', bookingRouter);
 app.use('/api/upload', uploadRouter);
-
+app.use('/api/contact', contactRouter);
 app.use('/api/notification', notificationRouter);
 
 app.use(errorHandlerMiddleware);
