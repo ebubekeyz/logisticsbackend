@@ -44,17 +44,19 @@ const UserSchema = new mongoose.Schema(
 
     phoneNumber: {
       type: String,
+      default: 'XXX-XXX-XXX',
     },
     companyName: {
       type: String,
+      default: 'Company Name',
     },
     officeNumber: {
       type: String,
-      required: true,
+      default: 'XXX-XXX-XXX',
     },
     address: {
       type: String,
-      required: true,
+      default: 'Address',
     },
 
     role: {
