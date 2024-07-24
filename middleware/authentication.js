@@ -24,6 +24,7 @@ const auth = (req, res, next) => {
       trackId,
       address,
       password,
+      photo,
       role,
     } = payload;
 
@@ -39,6 +40,7 @@ const auth = (req, res, next) => {
       trackId,
       address,
       password,
+      photo,
       role,
     };
     next();

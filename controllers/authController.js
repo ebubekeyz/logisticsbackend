@@ -17,6 +17,7 @@ export const registerUser = async (req, res) => {
     trackId,
     address,
     password,
+    photo,
     role,
   } = req.body;
 
@@ -43,6 +44,7 @@ export const registerUser = async (req, res) => {
     trackId: `SW-${randomTwoDigit1}-${randomTwoDigit2}`,
     address: 'ADDRESS',
     password,
+    photo,
     role,
   });
   const token = user.createJWT();

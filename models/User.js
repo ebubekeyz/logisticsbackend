@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
     id: {
       type: String,
     },
-    passport: {
+    photo: {
       type: String,
       default: '/uploads/avatar.png',
     },
@@ -90,6 +90,7 @@ UserSchema.methods.createJWT = function () {
       email: this.email,
       trackId: this.trackId,
       role: this.role,
+      photo: this.photo,
     },
     process.env.JWT_SECRET,
     {
