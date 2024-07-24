@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import BadRequestError from '../errors/badRequest.js';
 import UnauthorizedError from '../errors/unauthorized.js';
 
-export const createCooking = async (req, res) => {
+export const createContact = async (req, res) => {
   req.body.user = req.user.userId;
   const contact = await Cooking.create(req.body);
   res.status(StatusCodes.CREATED).json({ attributes: contact });
